@@ -2,7 +2,7 @@ class Post < ApplicationRecord
 
     validates :title, presence: true, length: { minimum: 10, maximum: 300 }
 
-    validates :body, presence: true,  length: { minimum: 300, too_short: "%{count} characters is less than the minimum allowed" }
+    validates :body, presence: true,  length: { minimum: 25, too_short: "%{count} characters is less than the minimum allowed" }
 
     validate :category_must_be_from_list
 
@@ -11,8 +11,8 @@ class Post < ApplicationRecord
             errors.add(:category, "category can't be empty")
             return 
         end
-        if CATEGORIES.include? cateogry
-            errors.add(:cateogry, "cateogry must be selected from given options")
+        if CATEGORIES.include? category == false
+            errors.add(:category, "category must be selected from given options")
         end
     end 
 
