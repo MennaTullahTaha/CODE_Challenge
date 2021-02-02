@@ -1,22 +1,22 @@
-<h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Category</th>
-                <th>body</th>
-                <th>fulfilled</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <%@posts.each do |post|%>
-            <tbody>
-                <td><%=post.title%></td>
-                <td><%=post.category%></td>
-                <td><%=post.body%></td>
-                <td><%=post.fulfilled%></td>
-                <td>None for now</td>
-            </tbody>
-        <%end%>
-    </table>
-</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>body</th>
+            <th>fulfilled</th>
+            <th colspan = "3">Actions</th>
+        </tr>
+    </thead>
+    <%@posts.each do |post|%>
+        <tbody>
+            <td><%=post.title%></td>
+            <td><%=post.category%></td>
+            <td><%=post.body%></td>
+            <td><%=post.fulfilled%></td>
+            <td><%=link_to 'Delete', post_path(post),method: :delete, data: {confirm: "Are you sure?"}%></td>
+            <td><%=link_to 'Show', post_path(post)%></td>
+            <td><%=link_to 'Edit', edit_post_path(post)%></td>
+        </tbody>
+    <%end%>
+</table>
