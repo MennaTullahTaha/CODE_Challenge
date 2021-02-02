@@ -22,6 +22,20 @@ class PostsController < ApplicationController
         end
     end 
 
+    def edit
+        @post = Post.find(params[:id])
+    end 
+
+    def update 
+        @post = Post.find(params[:id])
+        if @post.update(white_list)
+            flash[:notice] = "Post was updated successfully."
+            redirect_to @post
+        else
+            render 'edit' 
+        end   
+    end 
+
     private
     def white_list
         params.require(:post).permit(:title, :category, :fulfilled, :body)

@@ -5,7 +5,7 @@
     <%end%>
 </ul>
 <%end%>
-<%= form_with scope: :post, url: posts_path, local: true do |f| %>
+<%= form_with(model: @post, local: true) do |f| %>
     <p>
         <%= f.label :title%> <br/>
         <%= f.text_field :title%>
