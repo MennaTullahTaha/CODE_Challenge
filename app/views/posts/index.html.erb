@@ -9,14 +9,14 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
         <%@posts.each do |post|%>
-            <td><%=post.title%></td>
-            <td><%=post.category%></td>
-            <td><%=post.body%></td>
-            <td><%=post.fulfilled%></td>
-            <td>None for now</td>
+            <tbody>
+                <td><%=post.title%></td>
+                <td><%=post.category%></td>
+                <td><%=post.body%></td>
+                <td><%=post.fulfilled%></td>
+                <td>None for now</td>
+            </tbody>
         <%end%>
-        </tbody>
     </table>
 </h1>
