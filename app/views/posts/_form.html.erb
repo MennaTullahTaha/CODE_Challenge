@@ -1,0 +1,33 @@
+<% if @post.errors.any? %>
+<ul>
+    <%@post.errors.full_messages.each do |msg|%>
+        <li><%=msg%></li>
+    <%end%>
+</ul>
+<%end%>
+<%= form_with(model: @post, local: true) do |f| %>
+    <p>
+        <%= f.label :title%> <br/>
+        <%= f.text_field :title%>
+    </p>
+
+    <p>
+        <%= f.label :category%> <br/>
+        <%= f.select(:category, CATEGORIES, {include_blank: "Select Category"}, {class: 'form-control', required: true, selected: @set}) %>
+    </p>
+
+    <p>
+        <%= f.label :fulfilled%> <br/>
+        <%= f.select(:fulfilled, [['No',false],['Yes',true]], {include_blank: "Select State"}, {class: 'form-control', required: true, selected: @set}) %>
+    </p>
+
+    <p>
+        <%= f.label :body%>  <br/>
+        <%= f.text_area :body%>
+    </p>
+
+    <p>
+        <%= f.submit %>
+    </p>
+
+<%end%>
