@@ -9,12 +9,17 @@ class PostsController < ApplicationController
     end 
 
     def new
+        @post = Post.new
     end 
 
     def create
         @post = Post.new(white_list)
-        @post.save
-        redirect_to @post
+        if @post.save
+            flash[:notice] = "Post was created successfully."
+            redirect_to @post
+        else
+            render 'new'
+        end
     end 
 
     private

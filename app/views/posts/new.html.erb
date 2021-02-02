@@ -1,3 +1,10 @@
+<% if @post.errors.any? %>
+<ul>
+    <%@post.errors.full_messages.each do |msg|%>
+        <li><%=msg%></li>
+    <%end%>
+</ul>
+<%end%>
 <%= form_with scope: :post, url: posts_path, local: true do |f| %>
     <p>
         <%= f.label :title%> <br/>
