@@ -13,6 +13,7 @@ development:
   <<: *default
   host: "127.0.0.1"
   username: root
+  password: root
   database: code_challenge_Menna_dev
 
 # Warning: The database defined as "test" will be erased and
@@ -22,6 +23,7 @@ test:
   <<: *default
   host: "127.0.0.1"
   username: root
+  password: root
   database: code_challenge_Menna_test
 
 production:
