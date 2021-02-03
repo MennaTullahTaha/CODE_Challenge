@@ -9,7 +9,7 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title"><%= link_to post.title, post_path(post), class: "text-success" %></h5>
-                <h6>Category: <%=post.category%>.  Status: <%= p post.fulfilled ? "Open." : "Closed." %></h6>
+                <h6>Category: <%=post.category%>.  Status: <%= p post.fulfilled ? "Closed." : "Open." %></h6>
                 <p class="card-text"><%= truncate(post.body, length: 100) %></p>
                 <%= link_to "View", post_path(post), class: "btn btn-outline-success" %>
                 <%= link_to "Edit", edit_post_path(post), class: "btn btn-outline-info" %>
