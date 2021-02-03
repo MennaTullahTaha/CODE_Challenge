@@ -1,4 +1,22 @@
-title: <%=@post.title%> <br>
-category: <%=@post.category%> <br>
-body: <%=@post.body%>
-status: <%=@post.fulfilled%>
+<h1 class="text-center mt-4"><%=@post.title%></h1>
+<div class="container">
+    <div class="row justify-content-md-center">
+    <div class="col-8 mt-4">
+        <div class="card text-center shadow mb-5 bg-white rounded">
+        <div class="card-header font-italic">
+            by Not placed yet <br/>
+        </div>
+        <div class="card-body">
+            <h6>Category: <%=@post.category%>.  Status: <%= p @post.fulfilled ? "Open." : "Closed." %></h6>
+            <div class="card-text text-left"><%= simple_format(@post.body)%></div>
+            <%= link_to "Edit", edit_post_path(@post), class: "btn btn-outline-info" %>
+            <%= link_to "Delete", post_path(@post), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+        </div>
+        <div class="card-footer text-muted">
+            <small>Created <%= time_ago_in_words(@post.created_at) %> ago, 
+            edited <%= time_ago_in_words(@post.updated_at) %> ago</small>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>

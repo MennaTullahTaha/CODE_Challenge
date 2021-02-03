@@ -2,7 +2,9 @@ class Post < ApplicationRecord
 
     validates :title, presence: true, length: { minimum: 10, maximum: 300 }
 
-    validates :body, presence: true,  length: { minimum: 25, too_short: "%{count} characters is less than the minimum allowed" }
+    validates :body, presence: true,  length: { minimum: 25 }
+
+    validates :category, presence: true
 
     validate :category_must_be_from_list
 
