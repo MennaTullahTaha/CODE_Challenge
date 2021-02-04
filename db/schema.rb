@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_01_174122) do
+ActiveRecord::Schema.define(version: 2021_02_04_135940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "orphanages", force: :cascade do |t|
+    t.string "name"
+    t.string "street_address"
+    t.string "phone_number"
+    t.string "email"
+    t.integer "children_count"
+    t.boolean "accepts_new_cases", default: false
+    t.text "bio"
+    t.string "password_digest"
+    t.boolean "verified", default: false
+    t.string "governorate"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string "title"

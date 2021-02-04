@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  street_address: MyString
+  phone_number: MyString
+  email: MyString
+  children_count: 1
+  accepts_new_cases: false
+  default=: MyString
+  bio: MyText
+  password_digest: MyString
+  verified: false
+  default=: MyString
+  governorate: MyString
+
+two:
+  name: MyString
+  street_address: MyString
+  phone_number: MyString
+  email: MyString
+  children_count: 1
+  accepts_new_cases: false
+  default=: MyString
+  bio: MyText
+  password_digest: MyString
+  verified: false
+  default=: MyString
+  governorate: MyString

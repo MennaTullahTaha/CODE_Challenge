@@ -1,0 +1,6 @@
+      invoke  active_record
+      create    db/migrate/20210204135940_create_orphanages.rb
+      create    app/models/orphanage.rb
+      invoke    test_unit
+      create      test/models/orphanage_test.rb
+      create      test/fixtures/orphanages.yml
