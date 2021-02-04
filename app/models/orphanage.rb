@@ -1,10 +1,10 @@
 class Orphanage < ApplicationRecord
 
-    before_validation :ensure_email_and_name_are_downcase
+    before_validation :ensure_email_is_downcase
 
     PHONE_REGEX = /\A(?:\+?\d{1,3}\s*-?)?\(?(?:\d{3})?\)?[- ]?\d{3}[- ]?\d{4}\z/
 
-    validates :name, presence: true, length: { minimum: 5, maximum: 50 }, uniqueness: {case_sensitive: true}
+    validates :name, presence: true, length: { minimum: 5, maximum: 50 }, uniqueness: {case_sensitive: false}
 
     validates :street_address, presence: true, length: { minimum: 5, maximum: 50 }, uniqueness: {case_sensitive: false}
 
@@ -15,7 +15,7 @@ class Orphanage < ApplicationRecord
                  :length => { :minimum => 10, :maximum => 15 },
                  uniqueness: true
 
-    validates :email, presence: true, uniqueness: {case_sensitive: true}, length: {maximum:102}, format: {with: URI::MailTo::EMAIL_REGEXP} #TODO add index to anything with uniqueness
+    validates :email, presence: true, uniqueness: true, length: {maximum:102}, format: {with: URI::MailTo::EMAIL_REGEXP} #TODO add index to anything with uniqueness
 
     validates :children_count,presence: true, :numericality => true
 
@@ -35,9 +35,8 @@ class Orphanage < ApplicationRecord
         end
     end 
 
-    def ensure_email_and_name_are_downcase
+    def ensure_email_is_downcase
         email.downcase! if email
-        name.downcase! if name
     end
 
 end
