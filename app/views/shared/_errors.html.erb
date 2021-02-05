@@ -1,13 +1,16 @@
-<% if @post.errors.any? %>
-  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <h4 class="alert-heading">The following errors prevented the post from being saved</h4>
-    <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+<% if obj.errors.any? %>
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+   <span aria-hidden="true">&times;</span>
+   </button>
+   <h2>The <%=obj.class.name%> wasn't saved for the following reasons</h2>
+   <ul>
+      <% obj.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
       <% end %>
-    </ul>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-<% end %> 
+   </ul>
+   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+   <span aria-hidden="true">&times;</span>
+   </button>
+</div>
+<% end %>

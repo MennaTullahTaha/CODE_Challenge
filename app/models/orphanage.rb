@@ -10,7 +10,7 @@ class Orphanage < ApplicationRecord
 
     validates :street_address, presence: true, length: { minimum: 5, maximum: 50 }, uniqueness: {case_sensitive: false}
 
-    validates :bio, length: { maximum: 1000, too_long: "%{count} characters is the maximum allowed" }
+    validates :bio, length: { maximum: 300, too_long: "%{count} characters is the maximum allowed" }
 
     validates :phone_number,presence: true,
                  format: {with: PHONE_REGEX},

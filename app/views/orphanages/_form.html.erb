@@ -1,0 +1,75 @@
+<div class="container">
+   <div class="row justify-content-center">
+      <div class="col-10">
+         <%=render 'shared/errors', obj: @orphanage%>
+         <%= form_with(model: @orphanage, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+         <div class="form-group row">
+            <%= f.label :name, class: "col-2 col-form-label text-light" %>
+            <div class="col-10">
+               <%= f.text_field :name, class: "form-control shadow rounded", placeholder: "Name of orphanage" %>
+            </div>
+         </div>
+         <div class="form-group row">
+            <%= f.label :email, class: "col-2 col-form-label text-light" %>
+            <div class="col-10"> 
+               <%= f.email_field :email, class: "form-control shadow rounded", placeholder: "Enter Email" %>
+            </div>
+         </div>
+         <div class="form-group row">
+            <%= f.label :password, class: "col-2 col-form-label text-light" %>
+            <div class="col-10"> 
+               <%= f.password_field :password, class: "form-control shadow rounded", placeholder: "Enter password" %>
+            </div>
+         </div>
+        <div class="form-group row">
+            <%= f.label :confirm_password, class: "col-2 col-form-label text-light" %>
+            <div class="col-10"> 
+               <%= f.password_field :confirm_password, class: "form-control shadow rounded", placeholder: "Enter same password again" %>
+            </div>
+         </div>
+          <div class="form-group row">
+            <%= f.label :phone_number, class: "col-2 col-form-label text-light" %>
+            <div class="col-10">
+               <%= f.telephone_field :phone_number, class: "form-control shadow rounded", placeholder: "Phone number of orphanage" %>
+            </div>
+         </div>
+         <div class="form-group row">
+            <%= f.label :children_count, class: "col-2 col-form-label text-light" %>
+            <div class="col-10">
+               <%= f.number_field :children_count, class: "form-control shadow rounded", placeholder: "number of children in the orphanage" %>
+            </div>
+         </div>
+         <div class="form-group row">
+            <%= f.label :street_address, class: "col-2 col-form-label text-light" %>
+            <div class="col-10">
+               <%= f.text_field :street_address, class: "form-control shadow rounded", placeholder: "street address of orphanage" %>
+            </div>
+         </div>
+         <div class="form-group row">
+            <%= f.label :governorate, class: "col-2 col-form-label text-light" %>
+            <div class="col-10">
+               <%= f.select(:governorate, GOVERNORATES, {include_blank: "Select governorate"}, {class: 'form-control shadow rounded', required: true, selected: @set}) %>
+            </div>
+         </div>
+         <div class="form-group row">
+            <%= f.label :accepts_new_cases, class: "col-2 col-form-label text-light" %>
+            <div class="col-10">
+               <%= f.select(:accepts_new_cases, [['No',false],['Yes',true]], {include_blank: "Select State"}, {class: 'form-control shadow rounded', required: true, selected: @set})%>
+            </div>
+         </div>
+         <div class="form-group row">
+            <%= f.label :bio, class: "col-2 col-form-label text-light" %>
+            <div class="col-10"> 
+               <%= f.text_area :bio, rows: 5, class: "form-control shadow rounded", placeholder: "Content of post" %>
+            </div>
+         </div>
+         <div class="form-group row justify-content-center">
+            <%= f.submit(@orphanage.new_record? ? "Sign up" : "Update", class: "btn btn-outline-light btn-lg") %>
+         </div>
+         <% end %>
+      </div>
+      <div class="mb3">
+         <%= link_to '[ Cancel and return to posts listing ]', posts_path, class: "text-info" %>
+      </div>
+   </div>
+</div>
