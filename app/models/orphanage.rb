@@ -10,7 +10,7 @@ class Orphanage < ApplicationRecord
 
     validates :street_address, presence: true, length: { minimum: 5, maximum: 50 }, uniqueness: {case_sensitive: false}
 
-    validates :bio, length: { maximum: 300, too_long: "%{count} characters is the maximum allowed" }
+    validates :bio, length: { maximum: 1500, too_long: "%{count} characters is the maximum allowed" }
 
     validates :phone_number,presence: true,
                  format: {with: PHONE_REGEX},
@@ -19,9 +19,11 @@ class Orphanage < ApplicationRecord
 
     validates :email, presence: true, uniqueness: true, length: {maximum:102}, format: {with: URI::MailTo::EMAIL_REGEXP} #TODO add index to anything with uniqueness
 
-    validates :children_count,presence: true, :numericality => true
+    validates :children_count,presence: true, :numericality => { :greater_than_or_equal_to => 0 }
 
-    validates :accepts_new_cases, presence: true
+    validates :password, :presence =>true, :confirmation =>true
+
+    validates_confirmation_of :password
 
     validate :governorate_was_selected
 
