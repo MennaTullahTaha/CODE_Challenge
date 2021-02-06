@@ -4,7 +4,7 @@
       <div class="col-8 mt-4">
          <div class="card text-center shadow mb-5 bg-white rounded">
             <div class="card-header font-italic">
-               by <%@post.orphanage.name%> <br/>
+            by  <%=link_to @post.orphanage.name, orphanage_path(@post.orphanage)%><br/>
             </div>
             <div class="card-body">
                <h6>Category: <%=@post.category%>.  Status: <%= p @post.fulfilled ? "Closed." : "Open." %></h6>

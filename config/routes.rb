@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get 'orphanages-signup', to: 'orphanages#new'
 
+  get 'orphanages-posts/:orphanage_id', to: "posts#orphanage_posts", as: "orphanage_posts"
+
   resources :orphanages, :except =>[:new]
 
 

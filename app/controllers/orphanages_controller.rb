@@ -1,5 +1,7 @@
 class OrphanagesController < ApplicationController
 
+    before_action :set_orphanage, except: [:index, :new, :create]
+
     def new 
         @orphanage = Orphanage.new
     end 
@@ -15,22 +17,16 @@ class OrphanagesController < ApplicationController
     end
 
     def index
-    
+        @orphanages = Orphanage.all
     end
 
     def show
-        @orphanage = Orphanage.find(params[:id])
-
-        @posts = @orphanage.posts.all
-
     end
 
     def edit
-        @orphanage = Orphanage.find(params[:id])
     end
 
     def update
-        @orphanage = Orphanage.find(params[:id])
         if @orphanage.update(orphanage_params)
             flash[:notice] = "Orphanage was updated successfully."
             redirect_to @orphanage
@@ -48,5 +44,9 @@ class OrphanagesController < ApplicationController
     def orphanage_params
         params.require(:orphanage).permit(:name, :email, :password, :password_confirmation, :phone_number, :children_count,
                                           :street_address, :governorate, :accepts_new_cases, :bio)
+    end 
+
+    def set_orphanage
+        @orphanage = Orphanage.find(params[:id])
     end 
 end

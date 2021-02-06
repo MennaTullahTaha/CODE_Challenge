@@ -21,7 +21,7 @@
                <br/>
                <div class="card-text text-left">Bio:<br/><br/><%= simple_format(@orphanage.bio)%></div>
                <br/>
-               <a class="btn btn-outline-success" <%render 'posts/post', obj: @orphanage.posts%> role="button">View Orphanage Posts</a> 
+               <%= link_to "View posts made by this orphanage", orphanage_posts_path(@orphanage.id), class: "btn btn-outline-info" %>
                <%= link_to "Edit", edit_orphanage_path(@orphanage), class: "btn btn-outline-info" %>
                <%= link_to "Delete", orphanage_path(@orphanage), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
             </div>

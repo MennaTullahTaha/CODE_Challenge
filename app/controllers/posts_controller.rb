@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    before_action :set_post, except: [:index, :new, :create]
+    before_action :set_post, except: [:index, :new, :create,:orphanage_posts]
 
     def show
     end 
@@ -23,7 +23,7 @@ class PostsController < ApplicationController
     end 
 
     def edit
-    end 
+    end
 
     def update 
         if @post.update(white_list)
@@ -39,6 +39,10 @@ class PostsController < ApplicationController
         redirect_to posts_path
     end
 
+    def orphanage_posts
+        @posts = Post.where(orphanage_id: params[:orphanage_id])
+    end
+
     private
 
     def white_list
@@ -48,5 +52,6 @@ class PostsController < ApplicationController
     def set_post
         @post = Post.find(params[:id])
     end 
+
 
 end
