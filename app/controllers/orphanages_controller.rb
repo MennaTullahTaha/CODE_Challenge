@@ -19,15 +19,24 @@ class OrphanagesController < ApplicationController
     end
 
     def show
-    
+        @orphanage = Orphanage.find(params[:id])
+
+        @posts = @orphanage.posts.all
+
     end
 
     def edit
-    
+        @orphanage = Orphanage.find(params[:id])
     end
 
     def update
-
+        @orphanage = Orphanage.find(params[:id])
+        if @orphanage.update(orphanage_params)
+            flash[:notice] = "Orphanage was updated successfully."
+            redirect_to @orphanage
+        else
+            render 'edit' 
+        end   
     end 
 
     def destroy

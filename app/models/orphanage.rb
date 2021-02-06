@@ -1,6 +1,6 @@
 class Orphanage < ApplicationRecord
 
-    has_many :posts
+    has_many :posts, foreign_key: "orphanage_id"
 
     before_validation :ensure_email_is_downcase
 
