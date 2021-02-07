@@ -1,60 +1,62 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <%= link_to "CODE Challenge", root_path, class: "navbar-brand", id: "logo"%>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
+   <%= link_to "CODE Challenge", root_path, class: "navbar-brand", id: "logo"%>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+   <span class="navbar-toggler-icon"></span>
+   </button>
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+         <li class="nav-item">
             <%= link_to "Orphanages", orphanages_path, class: "nav-link"%>
-        </li>
-        <li class="nav-item dropdown">
+         </li>
+         <%if logged_in? == false%>
+         <%=link_to "Sign up as orphanage", orphanages_signup_path, class: "nav-link"%>
+         <%end%>
+         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Posts
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%if logged_in? && current_user.class.name == "Orphanage"%>
-                <%=link_to "Create new post", new_post_path, class: "dropdown-item"%>
-            <%end%>
-            <%=link_to "View posts", posts_path, class: "dropdown-item"%>
-            <div class="dropdown-divider"></div>
-            <%if logged_in? == false%>
-                <%=link_to "Sign up as orphanage", orphanages_signup_path, class: "dropdown-item"%>
-            <%end%>
-            <a class="dropdown-item" href="#">Something else here</a>
+               <%if logged_in? && current_user.class.name == "Orphanage"%>
+               <%=link_to "Create new post", new_post_path, class: "dropdown-item"%>
+               <%end%>
+               <%=link_to "View posts", posts_path, class: "dropdown-item"%>
+               <div class="dropdown-divider"></div>
+               <a class="dropdown-item" href="#">Something else here</a>
             </div>
-        </li>
-        <%if logged_in?%>
-          <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Profile [<%=current_user.name%>]
-          </a>
+         </li>
+         <%if logged_in?%>
+         <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Profile [<%=current_user.name%>]
+            </a>
             <%if current_user.class.name == "Orphanage"%>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <%=link_to "View the orphanage profile", orphanage_path(current_user), class: "dropdown-item"%>
-                    <%=link_to "Edit the orphanage profile", edit_orphanage_path(current_user), class: "dropdown-item"%>
-                    <%=link_to "Delete the orphanage profile", orphanage_path(current_user), class: "dropdown-item text-danger", method: :delete, data: {confirm: "Are you sure?"} %>
-                </div>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+               <%=link_to "View the orphanage profile", orphanage_path(current_user), class: "dropdown-item"%>
+               <%=link_to "Edit the orphanage profile", edit_orphanage_path(current_user), class: "dropdown-item"%>
+               <%=link_to "Delete the orphanage profile", orphanage_path(current_user), class: "dropdown-item text-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+            </div>
             <%else%>
-                <%= link_to current_user.name, "", class: "nav-link" %>
+            <%= link_to current_user.name, "", class: "nav-link" %>
             <%end%>
-        </li>
-        <li class="nav-item">
+         </li>
+         <li class="nav-item">
             <%= link_to 'Log out', logout_path, class: "nav-link", method: :delete %>
-        </li>
-        <%else%>
-                <li class="nav-item">
-                    <%= link_to 'Log in as orphanage', orphanages_login_path, class: "nav-link"%>
-                </li>
-                <li class="nav-item">
-                    <%= link_to 'Log in as volunteer', "", class: "nav-link"%>
-                </li>
-        <%end%>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
+         </li>
+         <%else%>
+         <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Login
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+               <%=link_to 'Log in as orphanage', orphanages_login_path, class: "dropdown-item"%>
+               <%= link_to 'Log in as volunteer', "", class: "dropdown-item"%>
+            </div>
+         </li>
+         <%end%>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+   </div>
 </nav>

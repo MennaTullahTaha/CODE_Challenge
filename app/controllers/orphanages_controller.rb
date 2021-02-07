@@ -1,7 +1,7 @@
 class OrphanagesController < ApplicationController
 
     before_action :set_orphanage, except: [:index, :new, :create]
-    before_action :require_orphanage, except: [:show, :index]
+    before_action :require_orphanage, only: [:edit, :update, :destroy]
     before_action :require_same_orphanage, only: [:edit, :update, :destroy]
 
 
