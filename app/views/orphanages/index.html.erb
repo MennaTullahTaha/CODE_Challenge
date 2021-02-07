@@ -1,4 +1,7 @@
 <h1 class="text-center mt-4">Current Orphanages in the system</h1>
+<div class="flickr_pagination">
+  <%= will_paginate @orphanages, :container => false %>
+</div>
 <div class="container">
    <% @orphanages.each do |orphanage|%>
    <div class="row justify-content-md-center">
@@ -16,7 +19,9 @@
                <br/>
                <div class="card-text text-center">Governorate: <%= orphanage.governorate%></div>
                <br/>
-               <%= link_to "Edit", edit_orphanage_path(orphanage), class: "btn btn-outline-info" %>
+               <%if logged_in? && orphanage == current_user%>
+                  <%= link_to "Edit", edit_orphanage_path(orphanage), class: "btn btn-outline-info" %>
+               <%end%>
                <%= link_to "View posts made by this orphanage", orphanage_posts_path(orphanage.id), class: "btn btn-outline-info" %>
             </div>
             <div class="card-footer text-muted">
@@ -27,4 +32,7 @@
       </div>
    </div>
    <%end%>
+</div>
+<div class="flickr_pagination mb-4">
+  <%= will_paginate @orphanages, :container => false %>
 </div>

@@ -4,7 +4,9 @@
       <p class="lead font-weight-bold">This website contains all the information about orphanages in Egypt and their needs.</p>
       <hr class="my-4">
       <p>It also includes information about Kafala and different volunteering methods.</p>
-      <%= link_to "Register as an orphanage!", orphanages_signup_path, class: "btn btn-success btn-lg" %>
-      <a class="btn btn-success btn-lg" href="#" role="button">Sign up as a volunteer!</a> 
+      <%if logged_in? == false%>
+         <%= link_to "Register as an orphanage!", orphanages_signup_path, class: "btn btn-success btn-lg" %>
+         <a class="btn btn-success btn-lg" href="#" role="button">Sign up as a volunteer!</a> 
+      <%end%>
    </div>
 </div>

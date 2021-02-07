@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
     before_action :set_post, except: [:index, :new, :create,:orphanage_posts]
-
+    before_action :require_orphanage, except: [:show, :index]
+    before_action :require_same_orphanage, only: [:edit, :update, :destroy]
     def show
     end 
 
     def index
-        @posts = Post.all
+        @posts = Post.paginate(page: params[:page], per_page: 5)
     end 
 
     def new
@@ -14,6 +15,7 @@ class PostsController < ApplicationController
 
     def create
         @post = Post.new(white_list)
+        @post.orphanage = current_user
         if @post.save
             flash[:notice] = "Post was created successfully."
             redirect_to @post
@@ -40,7 +42,7 @@ class PostsController < ApplicationController
     end
 
     def orphanage_posts
-        @posts = Post.where(orphanage_id: params[:orphanage_id])
+        @posts = Post.where(orphanage_id: params[:orphanage_id]).paginate(page: params[:page], per_page: 5)
     end
 
     private
@@ -53,5 +55,15 @@ class PostsController < ApplicationController
         @post = Post.find(params[:id])
     end 
 
-
+    def require_same_orphanage
+        if current_user.class.name == "Orphanage"
+            if current_user != @post.orphanage
+                flash[:alert] = "This account is permitted to only edit or delete posts created by it."
+                redirect_to @post
+            end 
+        else 
+            flash[:alert] = "You aren't permitted to perfom this action."
+            redirect_to @post
+        end 
+    end
 end

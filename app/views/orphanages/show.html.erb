@@ -22,8 +22,10 @@
                <div class="card-text text-left">Bio:<br/><br/><%= simple_format(@orphanage.bio)%></div>
                <br/>
                <%= link_to "View posts made by this orphanage", orphanage_posts_path(@orphanage.id), class: "btn btn-outline-info" %>
-               <%= link_to "Edit", edit_orphanage_path(@orphanage), class: "btn btn-outline-info" %>
-               <%= link_to "Delete", orphanage_path(@orphanage), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+               <%if logged_in? && @orphanage == current_user%>
+                  <%= link_to "Edit", edit_orphanage_path(@orphanage), class: "btn btn-outline-info" %>
+                  <%= link_to "Delete", orphanage_path(@orphanage), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+               <%end%>
             </div>
             <div class="card-footer text-muted">
                <small>Created <%= time_ago_in_words(@orphanage.created_at) %> ago, 

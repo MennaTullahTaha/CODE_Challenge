@@ -12,8 +12,10 @@
                   <h6>Category: <%=post.category%>.  Status: <%= p post.fulfilled ? "Closed." : "Open." %></h6>
                   <p class="card-text"><%= truncate(post.body, length: 100) %></p>
                   <%= link_to "View", post_path(post), class: "btn btn-outline-success" %>
-                  <%= link_to "Edit", edit_post_path(post), class: "btn btn-outline-info" %>
-                  <%= link_to "Delete", post_path(post), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+                  <% if logged_in? && post.orphanage == current_user%>
+                     <%= link_to "Edit", edit_post_path(post), class: "btn btn-outline-info" %>
+                     <%= link_to "Delete", post_path(post), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+                  <%end%>
                </div>
                <div class="card-footer text-muted">
                   <small>Created <%= time_ago_in_words(post.created_at) %> ago, 

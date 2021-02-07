@@ -10,5 +10,11 @@ Rails.application.routes.draw do
 
   resources :orphanages, :except =>[:new]
 
+  get 'orphanages-login', to: 'sessions#new_orphanage'
+
+  post 'orphanages-login', to: 'sessions#create_orphanage'
+
+  delete 'logout', to: 'sessions#destroy'
+
 
 end
