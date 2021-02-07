@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-    before_action :set_post, except: [:index, :new, :create,:orphanage_posts]
-    before_action :require_orphanage, except: [:show, :index]
+    before_action :set_post, except: [:index, :new, :create,:orphanage_posts, :orphanage_posts]
+    before_action :require_orphanage, except: [:show, :index, :orphanage_posts]
     before_action :require_same_orphanage, only: [:edit, :update, :destroy]
     def show
     end 
