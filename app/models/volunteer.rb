@@ -1,20 +1,18 @@
-class Orphanage < ApplicationRecord
+class Volunteer < ApplicationRecord
 
     has_many :orphanage_volunteers, :dependent => :destroy
 
-    has_many :volunteers, :through => :orphanage_volunteers
-
-    has_many :posts, foreign_key: "orphanage_id", dependent: :destroy
+    has_many :orphanages, :through => :orphanage_volunteers, :source => :orphanages
 
     before_validation :ensure_email_is_downcase
 
     PHONE_REGEX = /\A(?:\+?\d{1,3}\s*-?)?\(?(?:\d{3})?\)?[- ]?\d{3}[- ]?\d{4}\z/
 
-    validates :name, presence: true, length: { minimum: 5, maximum: 50 }, uniqueness: {case_sensitive: false}
+    validates :first_name, presence: true, length: { minimum: 5, maximum: 50 }
+
+    validates :last_name, presence: true, length: { minimum: 5, maximum: 50 }
 
     validates :street_address, presence: true, length: { minimum: 5, maximum: 50 }, uniqueness: {case_sensitive: false}
-
-    validates :bio, length: { maximum: 1500, too_long: "%{count} characters is the maximum allowed" }
 
     validates :phone_number,presence: true,
                  format: {with: PHONE_REGEX},
@@ -23,8 +21,8 @@ class Orphanage < ApplicationRecord
 
     validates :email, presence: true, uniqueness: true, length: {maximum:102}, format: {with: URI::MailTo::EMAIL_REGEXP} #TODO add index to anything with uniqueness
 
-    validates :children_count,presence: true, :numericality => { :greater_than_or_equal_to => 0 }
-
+    validates :job, presence: true, length: {minimum: 5, maximum: 20}
+    
     validates :password, :presence =>true, :confirmation =>true
 
     validates_confirmation_of :password
@@ -32,6 +30,18 @@ class Orphanage < ApplicationRecord
     validate :governorate_was_selected
 
     has_secure_password
+
+    validates :birth_date, :presence => true
+
+    validate :validate_age
+
+  private
+
+  def validate_age
+      if birth_date.present? && birth_date >= 15.years.ago.to_d && birth_date <= 80.years.from_now
+          errors.add(:birth_date, 'You should be over 15 years old and younger than 95 years old.')
+      end
+  end
 
     def governorate_was_selected
         if GOVERNORATES.nil?

@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_04_144028) do
+ActiveRecord::Schema.define(version: 2021_02_08_114050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "orphanage_volunteers", force: :cascade do |t|
+    t.integer "orphanage_id"
+    t.integer "volunteer_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "orphanages", force: :cascade do |t|
     t.string "name"
@@ -38,6 +45,20 @@ ActiveRecord::Schema.define(version: 2021_02_04_144028) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "orphanage_id"
+  end
+
+  create_table "volunteers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "street_address"
+    t.string "phone_number"
+    t.string "email"
+    t.date "birth_date"
+    t.string "job"
+    t.string "password_digest"
+    t.string "governorate"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end
