@@ -1,4 +1,5 @@
 class OrphanageVolunteer < ApplicationRecord
-    belongs_to :orphanages
+    belongs_to :orphanage
     belongs_to :volunteer
+
 end

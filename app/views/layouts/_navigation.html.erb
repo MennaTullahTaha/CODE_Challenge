@@ -32,6 +32,7 @@
                </a>
                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <%=link_to "View the orphanage profile", orphanage_path(current_user), class: "dropdown-item"%>
+                  <%=link_to "View your volunteers", view_current_volunteers_path, class: "dropdown-item"%>
                   <%=link_to "Edit the orphanage profile", edit_orphanage_path(current_user), class: "dropdown-item"%>
                   <%=link_to "Delete the orphanage profile", orphanage_path(current_user), class: "dropdown-item text-danger", method: :delete, data: {confirm: "Are you sure?"} %>
                </div>
@@ -41,6 +42,7 @@
                </a>
                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <%=link_to "View your profile", volunteer_path(current_user), class: "dropdown-item"%>
+                  <%=link_to "View your volunteering locations", view_volunteering_activity_path, class: "dropdown-item"%>
                   <%=link_to "Edit your profile", edit_volunteer_path(current_user), class: "dropdown-item"%>
                   <%=link_to "Delete your profile", volunteer_path(current_user), class: "dropdown-item text-danger", method: :delete, data: {confirm: "Are you sure?"} %>
                </div>

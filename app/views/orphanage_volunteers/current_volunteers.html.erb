@@ -1,4 +1,4 @@
-<h1 class="text-center mt-4">Current Orphanages in the system</h1>
+<h1 class="text-center mt-4">Your orphanage volunteers</h1>
 <div class="flickr_pagination">
   <%= will_paginate @volunteers, :container => false %>
 </div>
@@ -15,13 +15,8 @@
                <br/>
                <div class="card-text text-center">Birth Date: <%=volunteer.birth_date%></div>
                <br/>
-               <!-- <div class="card-text text-center">Number of posts: <%= pluralize(orphanage.posts.count, "post")%></div>
-               <br/> -->
                <div class="card-text text-center">Governorate: <%= volunteer.governorate%></div>
                <br/>
-               <%if logged_in? && volunteer == current_user%>
-                  <%= link_to "Edit", edit_volunteer_path(volunteer), class: "btn btn-outline-info" %>
-               <%end%>
             </div>
             <div class="card-footer text-muted">
                <small>Joined <%= time_ago_in_words(volunteer.created_at) %> ago, 

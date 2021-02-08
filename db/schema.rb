@@ -18,8 +18,6 @@ ActiveRecord::Schema.define(version: 2021_02_08_114050) do
   create_table "orphanage_volunteers", force: :cascade do |t|
     t.integer "orphanage_id"
     t.integer "volunteer_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "orphanages", force: :cascade do |t|

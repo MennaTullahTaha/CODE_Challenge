@@ -28,3 +28,4 @@ GOVERNORATES = ['Alexandria',
         'Sohag',
         'South Sinai',
         'Suez'].freeze
+

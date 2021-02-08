@@ -24,4 +24,7 @@ Rails.application.routes.draw do
 
   get 'volunteers-signup', to: 'volunteers#new'
 
+  get 'view-volunteering-activity', to: 'orphanage_volunteers#volunteer_activities'
+
+  get 'view-current-volunteers', to: 'orphanage_volunteers#current_volunteers'
 end

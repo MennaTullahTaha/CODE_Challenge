@@ -2,7 +2,7 @@ class Orphanage < ApplicationRecord
 
     has_many :orphanage_volunteers, :dependent => :destroy
 
-    has_many :volunteers, :through => :orphanage_volunteers
+    has_many :volunteers, through: :orphanage_volunteers
 
     has_many :posts, foreign_key: "orphanage_id", dependent: :destroy
 

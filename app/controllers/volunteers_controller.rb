@@ -2,7 +2,7 @@ class VolunteersController < ApplicationController
     
     before_action :set_volunteer, except: [:index, :new, :create]
     before_action :require_volunteer, only: [:edit, :update, :destroy]
-    before_action :require_same_volunteer, only: [:edit, :update, :destroy, :show]
+    before_action :require_same_volunteer, only: [:edit, :update, :destroy]
 
 
     def new 
@@ -35,6 +35,10 @@ class VolunteersController < ApplicationController
     end
 
     def show
+        if logged_in? && (current_user != @volunteer && @volunteer.orphanages.find(session[:orphanage_id]) == false)
+            flash[:alert] = "You aren't permitted to view this page."
+            redirect_to root_path
+        end
     end
 
     def edit

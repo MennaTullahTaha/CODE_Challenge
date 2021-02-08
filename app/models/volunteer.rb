@@ -2,7 +2,7 @@ class Volunteer < ApplicationRecord
 
     has_many :orphanage_volunteers, :dependent => :destroy
 
-    has_many :orphanages, :through => :orphanage_volunteers, :source => :orphanages
+    has_many :orphanages, through: :orphanage_volunteers
 
     before_validation :ensure_email_is_downcase
 
