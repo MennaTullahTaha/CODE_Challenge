@@ -6,7 +6,7 @@
       <p>It also includes information about Kafala and different volunteering methods.</p>
       <%if logged_in? == false%>
          <%= link_to "Register as an orphanage!", orphanages_signup_path, class: "btn btn-success btn-lg" %>
-         <a class="btn btn-success btn-lg" href="#" role="button">Sign up as a volunteer!</a> 
+         <%= link_to "Sign up as a volunteer!", volunteers_signup_path, class: "btn btn-success btn-lg" %>
       <%end%>
    </div>
 </div>

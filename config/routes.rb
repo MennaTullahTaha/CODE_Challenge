@@ -14,7 +14,14 @@ Rails.application.routes.draw do
 
   post 'orphanages-login', to: 'sessions#create_orphanage'
 
+  get 'volunteers-login', to: 'sessions#new_volunteer'
+
+  post 'volunteers-login', to: 'sessions#create_volunteer'
+
   delete 'logout', to: 'sessions#destroy'
 
+  resources :volunteers, :except =>[:new]
+
+  get 'volunteers-signup', to: 'volunteers#new'
 
 end

@@ -1,0 +1,37 @@
+<h1 class="text-center mt-4">Current Orphanages in the system</h1>
+<div class="flickr_pagination">
+  <%= will_paginate @volunteers, :container => false %>
+</div>
+<div class="container">
+   <% @volunteers.each do |volunteer|%>
+   <div class="row justify-content-md-center">
+      <div class="col-8 mt-4">
+         <div class="card text-center shadow mb-5 bg-white rounded">
+            <div class="card-header font-italic">
+               <%=link_to volunter.first_name+" "+volunteer.last_name, volunteer%>
+            </div>
+            <div class="card-body">
+               <div class="card-text text-center">Email: <%= volunteer.email %></div>
+               <br/>
+               <div class="card-text text-center">Birth Date: <%=volunteer.birth_date%></div>
+               <br/>
+               <!-- <div class="card-text text-center">Number of posts: <%= pluralize(orphanage.posts.count, "post")%></div>
+               <br/> -->
+               <div class="card-text text-center">Governorate: <%= volunteer.governorate%></div>
+               <br/>
+               <%if logged_in? && volunteer == current_user%>
+                  <%= link_to "Edit", edit_volunteer_path(volunteer), class: "btn btn-outline-info" %>
+               <%end%>
+            </div>
+            <div class="card-footer text-muted">
+               <small>Joined <%= time_ago_in_words(volunteer.created_at) %> ago, 
+               edited <%= time_ago_in_words(volunteer.updated_at) %> ago</small>
+            </div>
+         </div>
+      </div>
+   </div>
+   <%end%>
+</div>
+<div class="flickr_pagination mb-4">
+  <%= will_paginate @volunteers, :container => false %>
+</div>

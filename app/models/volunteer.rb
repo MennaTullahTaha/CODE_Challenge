@@ -8,11 +8,11 @@ class Volunteer < ApplicationRecord
 
     PHONE_REGEX = /\A(?:\+?\d{1,3}\s*-?)?\(?(?:\d{3})?\)?[- ]?\d{3}[- ]?\d{4}\z/
 
-    validates :first_name, presence: true, length: { minimum: 5, maximum: 50 }
+    validates :first_name, presence: true, length: { minimum: 4, maximum: 50 }
 
-    validates :last_name, presence: true, length: { minimum: 5, maximum: 50 }
+    validates :last_name, presence: true, length: { minimum: 4, maximum: 50 }
 
-    validates :street_address, presence: true, length: { minimum: 5, maximum: 50 }, uniqueness: {case_sensitive: false}
+    validates :street_address, presence: true, length: { minimum: 5, maximum: 50 }
 
     validates :phone_number,presence: true,
                  format: {with: PHONE_REGEX},
@@ -38,7 +38,7 @@ class Volunteer < ApplicationRecord
   private
 
   def validate_age
-      if birth_date.present? && birth_date >= 15.years.ago.to_d && birth_date <= 80.years.from_now
+      if birth_date.present? && birth_date >= 15.years.ago.to_date && birth_date <= 80.years.from_now.to_date
           errors.add(:birth_date, 'You should be over 15 years old and younger than 95 years old.')
       end
   end
