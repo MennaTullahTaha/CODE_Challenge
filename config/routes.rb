@@ -27,4 +27,15 @@ Rails.application.routes.draw do
   get 'view-volunteering-activity', to: 'orphanage_volunteers#volunteer_activities'
 
   get 'view-current-volunteers', to: 'orphanage_volunteers#current_volunteers'
+
+  get 'schedule-time', to: 'appointments#new'
+
+  post 'schedule-time', to: 'appointments#create'
+
+  get 'view-pending-appointments', to: 'appointments#pending_appointments'
+
+  delete 'cancel-appointment', to: 'appointments#cancel_appointment'
+
+  resources :appointments, :except => [:new, :create, :destroy, :edit, :update]
+  
 end

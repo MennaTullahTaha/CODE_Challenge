@@ -1,0 +1,47 @@
+<h1 class="text-center mt-4">Book time to visit orphanage</h1>
+<div class="container">
+   <div class="row justify-content-center">
+      <div class="col-10">
+         <%=render 'shared/errors', obj: @appointment%>
+         <%= form_with(scope: :appointment, :url => schedule_time_path(@appointment), class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+         <div class="form-group row">
+            <%= f.label :choose_orphanage, class: "col-2 col-form-label text-light" %>
+            <div class="col-10">
+               <% options = options_from_collection_for_select(@orphanages, 'id', 'name') %>
+               <%= f.select(:orphanage, options ,{include_blank: "Select Orphanage"}, {class: 'form-control shadow rounded', required: true, selected: @set}) %>
+            </div>
+         </div>
+         <div class="form-group row">
+            <%= f.label :choose_day, class: "col-2 col-form-label text-light" %>
+            <div class="col-10">
+               <%= f.select(:choosen_day, ((Time.now + 2.days).to_date .. (Time.now + 30.days).to_date).to_a,{include_blank: "Select Day"}, {class: 'form-control shadow rounded', required: true, selected: @set}) %>
+            </div>
+         </div>
+         <div class="form-group row">
+            <%= f.label :available_from, class: "col-2 col-form-label text-light" %>
+            <div class="col-10">
+               <%= f.select(:available_from, [["10 AM",10], ["11 AM",11], ["12 PM",12], ["1 PM",13], ["2 PM",14], ["3 PM",15], ["4 PM",16], ["5 PM",17]],{include_blank: "Select time"}, {class: 'form-control shadow rounded', required: true, selected: @set}) %>
+            </div>
+         </div>
+        <div class="form-group row">
+            <%= f.label :available_until, class: "col-2 col-form-label text-light" %>
+            <div class="col-10">
+               <%= f.select(:available_until, [["10 AM",10], ["11 AM",11], ["12 PM",12], ["1 PM",13], ["2 PM",14], ["3 PM",15], ["4 PM",16], ["5 PM",17]],{include_blank: "Select time"}, {class: 'form-control shadow rounded', required: true, selected: @set}) %>
+            </div>
+         </div>
+         <div class="form-group row">
+            <%= f.label :note, class: "col-2 col-form-label text-light" %>
+            <div class="col-10"> 
+               <%= f.text_area :note, rows: 3, class: "form-control shadow rounded", placeholder: "Leave a note for the orphanage" %>
+            </div>
+         </div>
+         <div class="form-group row justify-content-center">
+            <%= f.submit(:Submit, class: "btn btn-outline-light btn-lg") %>
+         </div>
+         <% end %>
+      </div>
+      <div class="mb3">
+         <%= link_to '[ Cancel and return to posts listing ]', posts_path, class: "text-info" %>
+      </div>
+   </div>
+</div>
