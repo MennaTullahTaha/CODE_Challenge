@@ -40,6 +40,8 @@ Rails.application.routes.draw do
 
   delete 'cancel-appointment/:appointment_id', to: 'appointments#cancel_appointment', as: "cancel_appointment"
 
+  get 'faqs', to: 'pages#FAQS'
+
   resources :appointments, :except => [:new, :create, :destroy, :edit, :update]
   
 end
