@@ -4,6 +4,8 @@ class Orphanage < ApplicationRecord
 
     has_many :volunteers, through: :orphanage_volunteers
 
+    has_many :appointments, foreign_key: "orphanage_id", dependent: :destroy
+
     has_many :posts, foreign_key: "orphanage_id", dependent: :destroy
 
     before_validation :ensure_email_is_downcase

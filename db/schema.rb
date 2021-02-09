@@ -21,9 +21,8 @@ ActiveRecord::Schema.define(version: 2021_02_08_182248) do
     t.integer "available_from"
     t.integer "available_until"
     t.boolean "approved_by_orphanage", default: false
-    t.string "volunteer_name"
-    t.integer "appointment_time"
-    t.integer "orphanage_volunteer_id"
+    t.integer "volunteer_id"
+    t.integer "orphanage_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

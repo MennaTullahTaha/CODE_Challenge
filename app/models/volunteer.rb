@@ -4,6 +4,8 @@ class Volunteer < ApplicationRecord
 
     has_many :orphanages, through: :orphanage_volunteers
 
+    has_many :appointments, foreign_key: "volunteer_id", dependent: :destroy
+
     before_validation :ensure_email_is_downcase
 
     PHONE_REGEX = /\A(?:\+?\d{1,3}\s*-?)?\(?(?:\d{3})?\)?[- ]?\d{3}[- ]?\d{4}\z/

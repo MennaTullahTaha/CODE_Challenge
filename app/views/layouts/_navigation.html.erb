@@ -9,45 +9,66 @@
             <%= link_to "Orphanages", orphanages_path, class: "nav-link"%>
          </li>
          <%if logged_in? == false%>
-         <%=link_to "Sign up as orphanage", orphanages_signup_path, class: "nav-link"%>
+            <%=link_to "Sign up as orphanage", orphanages_signup_path, class: "nav-link"%>
+            <%=link_to "Register as a volunteer", volunteers_signup_path, class: "nav-link"%>
          <%end%>
-         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Posts
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-               <%if logged_in? && current_user.class.name == "Orphanage"%>
-               <%=link_to "Create new post", new_post_path, class: "dropdown-item"%>
-               <%end%>
-               <%=link_to "View posts", posts_path, class: "dropdown-item"%>
-               <div class="dropdown-divider"></div>
-               <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-         </li>
+         <%if logged_in? && current_user.class.name == "Orphanage"%>
+            <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Posts
+               </a>
+               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <%if logged_in? && current_user.class.name == "Orphanage"%>
+                  <%=link_to "Create new post", new_post_path, class: "dropdown-item"%>
+                  <%end%>
+                  <%=link_to "View posts", posts_path, class: "dropdown-item"%>
+               </div>
+            </li>
+         <%else%>
+               <%=link_to "View posts", posts_path, class: "nav-link"%>
+         <%end%>
          <%if logged_in?%>
          <li class="nav-item dropdown">
             <%if current_user.class.name == "Orphanage"%>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Profile [<%=current_user.name%>]
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+               <%=link_to "View the orphanage profile", orphanage_path(current_user), class: "dropdown-item"%>
+               <%=link_to "Edit the orphanage profile", edit_orphanage_path(current_user), class: "dropdown-item"%>
+               <%=link_to "Delete the orphanage profile", orphanage_path(current_user), class: "dropdown-item text-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+            </div>
+            <li class="nav-item dropdown">
                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               Profile [<%=current_user.name%>]
+               Appointments
                </a>
-               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <%=link_to "View the orphanage profile", orphanage_path(current_user), class: "dropdown-item"%>
-                  <%=link_to "View your volunteers", view_current_volunteers_path, class: "dropdown-item"%>
-                  <%=link_to "Edit the orphanage profile", edit_orphanage_path(current_user), class: "dropdown-item"%>
-                  <%=link_to "Delete the orphanage profile", orphanage_path(current_user), class: "dropdown-item text-danger", method: :delete, data: {confirm: "Are you sure?"} %>
-               </div>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+               <%=link_to "View your volunteers", view_current_volunteers_path, class: "dropdown-item"%>
+               <%=link_to "View pending appointments", view_pending_appointments_path, class: "dropdown-item"%>
+               <%=link_to "View approved appointments", view_approved_appointments_path, class: "dropdown-item" %>
+            </div>
+            </li>
             <% elsif current_user.class.name == "Volunteer" %>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Profile [<%=current_user.first_name%>]
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+               <%=link_to "View your profile", volunteer_path(current_user), class: "dropdown-item"%>
+               <%=link_to "Edit your profile", edit_volunteer_path(current_user), class: "dropdown-item"%>
+               <%=link_to "Delete your profile", volunteer_path(current_user), class: "dropdown-item text-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+            </div>
+            <li class="nav-item dropdown">
                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               Profile [<%=current_user.first_name%>]
+               Appointments
                </a>
-               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <%=link_to "View your profile", volunteer_path(current_user), class: "dropdown-item"%>
-                  <%=link_to "View your volunteering locations", view_volunteering_activity_path, class: "dropdown-item"%>
-                  <%=link_to "Edit your profile", edit_volunteer_path(current_user), class: "dropdown-item"%>
-                  <%=link_to "Delete your profile", volunteer_path(current_user), class: "dropdown-item text-danger", method: :delete, data: {confirm: "Are you sure?"} %>
-               </div>
-            <%end%>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+               <%=link_to "Schedule an appointment", schedule_time_path, class: "dropdown-item"%>
+               <%=link_to "View your volunteering locations", view_volunteering_activity_path, class: "dropdown-item"%>
+               <%=link_to "View approved appointments", view_approved_appointments_path, class: "dropdown-item" %>
+            </div>
+            </li>
          </li>
+         <%end%>
          <li class="nav-item">
             <%= link_to 'Log out', logout_path, class: "nav-link", method: :delete %>
          </li>

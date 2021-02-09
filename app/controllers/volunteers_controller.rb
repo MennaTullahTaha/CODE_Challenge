@@ -35,7 +35,7 @@ class VolunteersController < ApplicationController
     end
 
     def show
-        if logged_in? && (current_user != @volunteer && @volunteer.orphanages.find(session[:orphanage_id]) == false)
+        if logged_in? && (current_user != @volunteer && current_user.class.name != "Orphanage")
             flash[:alert] = "You aren't permitted to view this page."
             redirect_to root_path
         end

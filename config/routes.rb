@@ -34,7 +34,11 @@ Rails.application.routes.draw do
 
   get 'view-pending-appointments', to: 'appointments#pending_appointments'
 
-  delete 'cancel-appointment', to: 'appointments#cancel_appointment'
+  get 'approve-appointment/:appointment_id', to: 'appointments#approve_appointment', as: "approve_appointment"
+
+  get 'view-approved-appointments', to: 'appointments#approved_appointments', as: "view_approved_appointments"
+
+  delete 'cancel-appointment/:appointment_id', to: 'appointments#cancel_appointment', as: "cancel_appointment"
 
   resources :appointments, :except => [:new, :create, :destroy, :edit, :update]
   

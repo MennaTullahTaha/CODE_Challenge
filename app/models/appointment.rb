@@ -1,10 +1,10 @@
 class Appointment < ApplicationRecord
 
-    belongs_to :orphanage_volunteer
+    belongs_to :orphanage
+
+    belongs_to :volunteer
 
     validates :choosen_day, :presence => true
-
-    validates :volunteer_name, :presence => true
 
     validate :validate_choosen_day
 
