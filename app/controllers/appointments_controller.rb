@@ -57,8 +57,10 @@ class AppointmentsController < ApplicationController
             @record = Appointment.find_by(orphanage_id:@appointment.orphanage_id, volunteer_id: @appointment.volunteer_id, approved_by_orphanage: true)
             if !@record
                 @orphanage = @appointment.orphanage
-                @volunteer = @orphanage.volunteers.find(@appointment.volunteer_id)
-                @orphanage.volunteers.delete(@volunteer)
+                if OrphanageVolunteer.find_by(orphanage_id: @orphanage.id, volunteer_id: @appointment.volunteer_id)
+                    @volunteer = @orphanage.volunteers.find(@appointment.volunteer_id)
+                    @orphanage.volunteers.delete(@volunteer)
+                end 
             end
             @appointment.destroy
             redirect_to view_pending_appointments_path
