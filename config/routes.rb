@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   delete 'cancel-appointment/:appointment_id', to: 'appointments#cancel_appointment', as: "cancel_appointment"
 
   get 'faqs', to: 'pages#FAQS'
-  
+
   get 'eligibility_criteria', to: 'pages#eligibility_criteria'
 
   get 'procedures_documents_required', to: 'pages#procedures_documents_required'
@@ -56,7 +56,7 @@ Rails.application.routes.draw do
 
   get 'Sara_Story', to: 'pages#sara_story'
 
-  get 'Fatma_Story', to: 'pages#fatma_story'
+  get 'Fatima_Story', to: 'pages#fatima_story'
 
   get 'Marwa_Story', to: 'pages#marwa_story'
 

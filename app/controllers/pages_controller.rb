@@ -27,7 +27,7 @@ class PagesController < ApplicationController
     def sara_story
     end
 
-    def fatma_story
+    def fatima_story
     end 
 
     def marwa_story
