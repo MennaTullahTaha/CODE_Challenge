@@ -64,7 +64,9 @@ Rails.application.routes.draw do
 
   resources :report_cases, :except => [:new, :edit, :update, :destroy]
 
-  get 'report-new-case', to: 'report_cases#new', as: "report_new_case"
+  get 'report-new-case', to: 'report_cases#new'
+
+  post 'report-new-case', to: 'report_cases#create'
 
   get 'view-reported-cases', to: 'report_case#volunteer_reported_cases', as: "view_reported_cases"
 
