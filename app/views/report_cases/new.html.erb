@@ -1,0 +1,59 @@
+<h1 class="text-center mt-4">Report a case of a child in need</h1>
+<p class="text-center mt-4">*Please note that a case can't be edited once created so review information before submitting</p>
+<div class="container">
+   <div class="row justify-content-center">
+      <div class="col-10">
+         <%=render 'shared/errors', obj: @case%>
+         <%= form_with(scope: :report_case, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+         <div class="form-group row">
+            <%= f.label :name, class: "col-2 col-form-label text-light" %>
+            <div class="col-10">
+               <%= f.text_field :name, class: "form-control shadow rounded", placeholder: "Name of child if known" %>
+            </div>
+         </div>
+         <div class="form-group row">
+            <%= f.label :street_address, class: "col-2 col-form-label text-light" %>
+            <div class="col-10">
+               <%= f.text_field :street_address, class: "form-control shadow rounded", placeholder: "location where child was found" %>
+            </div>
+         </div>
+         <div class="form-group row">
+            <%= f.label :governorate, class: "col-2 col-form-label text-light" %>
+            <div class="col-10">
+               <%= f.select(:governorate, GOVERNORATES, {include_blank: "Select governorate"}, {class: 'form-control shadow rounded', required: true, selected: @set}) %>
+            </div>
+         </div>
+         <div class="form-group row">
+            <%= f.label :approximate_age, class: "col-2 col-form-label text-light" %>
+            <div class="col-10">
+               <%= f.text_field :approximate_age, class: "form-control shadow rounded", placeholder: "approximate age of child" %>
+            </div>
+         </div>
+         <div class="form-group row">
+            <%= f.label :health_state, class: "col-2 col-form-label text-light" %>
+            <div class="col-10">
+               <%= f.text_area :health_state, rows: 2, class: "form-control shadow rounded", placeholder: "health state of child" %>
+            </div>
+         </div>
+         <div class="form-group row">
+            <%= f.label :description, class: "col-2 col-form-label text-light" %>
+            <div class="col-10"> 
+               <%= f.text_area :description, rows: 3, class: "form-control shadow rounded", placeholder: "description of child" %>
+            </div>
+         </div>
+         <div class="form-group row">
+            <%= f.label :note, class: "col-2 col-form-label text-light" %>
+            <div class="col-10"> 
+               <%= f.text_area :note, rows: 3, class: "form-control shadow rounded", placeholder: "Leave a note for the orphanage in case you are taking further actions" %>
+            </div>
+         </div>
+         <div class="form-group row justify-content-center">
+            <%= f.submit(:Submit, class: "btn btn-outline-light btn-lg") %>
+         </div>
+         <% end %>
+      </div>
+      <div class="mb3">
+         <br/><%= link_to '[ Cancel and return to posts listing ]', posts_path, class: "text-info" %>
+      </div>
+   </div>
+</div>

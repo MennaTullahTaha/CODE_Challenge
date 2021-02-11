@@ -62,6 +62,17 @@ Rails.application.routes.draw do
 
   get 'Hamza_Story', to: 'pages#hamza_story'
 
+  resources :report_cases, :except => [:new, :edit, :update, :destroy]
+
+  get 'report-new-case', to: 'report_cases#new', as: "report_new_case"
+
+  get 'view-reported-cases', to: 'report_case#volunteer_reported_cases', as: "view_reported_cases"
+
+  get 'view-pending-cases', to: 'report_case#view_pending_cases', as: "view_pending_cases"
+
+  get 'accepted_cases', to: 'report_case#orphanage_accepted_cases', as: "accepted_cases"
+
+  get 'accept_case/:case_id', to: 'report_case#accept_case'
 
   resources :appointments, :except => [:new, :create, :destroy, :edit, :update]
   

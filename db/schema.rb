@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2021_02_11_140356) do
     t.string "street_address"
     t.string "approximate_age"
     t.text "description"
+    t.text "note"
     t.text "health_state"
     t.integer "volunteer_id"
     t.string "governorate"

@@ -1,6 +1,6 @@
 class ReportCase < ApplicationRecord
 
-    belongs_to: volunteer
+    belongs_to :volunteer
 
     validates :street_address, presence: true, length: { minimum: 5, maximum: 50 }
 
@@ -10,6 +10,7 @@ class ReportCase < ApplicationRecord
 
     validates :health_state, :presence => true, length: { maximum: 200, too_long: "%{count} characters is the maximum allowed" }
 
+    validates :note, length: { maximum: 200, too_long: "%{count} characters is the maximum allowed" }
 
     private
 

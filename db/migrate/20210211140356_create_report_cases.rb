@@ -6,6 +6,7 @@ class CreateReportCases < ActiveRecord::Migration[6.0]
       t.string :street_address
       t.string :approximate_age
       t.text :description
+      t.text :note
       t.text :health_state
       t.integer :volunteer_id
       t.string :governorate
