@@ -12,7 +12,7 @@
                <%v = Volunteer.find(appointment.volunteer_id) %>
                <%=link_to v.first_name+" "+v.last_name, v%>
             <%else%>
-                <%o = Orphanage.find(appointment.orphanage_id) %>
+               <%o = Orphanage.find(appointment.orphanage_id) %>
                <%=link_to o.name, o%>
             <%end%>
             </div>
