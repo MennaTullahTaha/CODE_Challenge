@@ -20,7 +20,11 @@ class ReportCasesController < ApplicationController
     end 
 
     def show 
-        @case = ReportCase.find(params[:id])
+        if @case.volunteer == current_user || current_user.class.name == "Orphanage"
+            @case = ReportCase.find(params[:id])
+        else 
+            flash[:alert] = "You don't have permission to view this page."
+            redirect_to root_path
     end 
 
     def volunteer_reported_cases
