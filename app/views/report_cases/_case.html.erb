@@ -1,0 +1,46 @@
+<div class="container">
+   <%@cases.each do |reported_case| %>
+   <div class="row justify-content-md-center">
+      <div class="col-8 mt-4">
+         <div class="card text-center shadow mb-5 bg-white rounded">
+            <div class="card-header font-italic">
+               Reported by  <%=link_to reported_case.volunteer.first_name+" "+reported_case.volunteer.last_name, volunteer_path(reported_case.volunteer)%>
+            </div>
+            <div class="card-body">
+               <div class="card-text text-left">Case State: <%= p reported_case.case_resolved ? "Resolved." : "Open." %></div>
+               <br/>
+               <%if reported_case.case_accepted%>
+               <%o = Orphanage.find(reported_case.orphanage_id)%>
+               <div class="card-text text-left">Case accepted by: <%=link_to o.name, orphanage_path(o) %></div>
+               <br/>
+               <%end%>
+               <div class="card-text text-left">Child name: <%= reported_case.name == "" ? "Non provided" : reported_case.name %></div>
+               <br/>
+               <div class="card-text text-left">Street Address: <%= reported_case.street_address %></div>
+               <br/>
+               <div class="card-text text-left">Governorate: <%= reported_case.governorate%></div>
+               <br/>
+               <div class="card-text text-left">Approximate age: <%= reported_case.approximate_age%></div>
+               <br/>
+               <div class="card-text text-left">Health State: <%= reported_case.health_state%></div>
+               <br/>
+               <div class="card-text text-left">Description: <%= reported_case.description%></div>
+               <br/>
+               <%if reported_case.note != ""%>
+               <div class="card-text text-left">Notes: <%=reported_case.note%></div>
+               <%end%>
+               <%if reported_case.case_accepted == false && current_user.class.name == "Orphanage"%>
+               <%= link_to "Accept Case", accept_case_path(reported_case.id), class: "btn btn-outline-info" %>
+               <%elsif reported_case.case_accepted && !reported_case.case_resolved && current_user == Orphanage.find(reported_case.orphanage_id) %>
+               <%= link_to "Resolve Case", resolve_case_path(reported_case.id), class: "btn btn-outline-info" %>
+               <%end%>
+            </div>
+            <div class="card-footer text-muted">
+               <small>Created <%= time_ago_in_words(reported_case.created_at) %> ago, 
+               edited <%= time_ago_in_words(reported_case.updated_at) %> ago</small>
+            </div>
+         </div>
+      </div>
+   </div>
+   <%end%>
+</div>

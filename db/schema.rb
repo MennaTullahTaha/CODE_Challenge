@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2021_02_11_140356) do
   create_table "report_cases", force: :cascade do |t|
     t.string "name"
     t.boolean "case_resolved", default: false
+    t.boolean "case_accepted", default: false
     t.string "street_address"
     t.string "approximate_age"
     t.text "description"

@@ -3,6 +3,7 @@ class CreateReportCases < ActiveRecord::Migration[6.0]
     create_table :report_cases do |t|
       t.string :name
       t.boolean :case_resolved, :default => false
+      t.boolean :case_accepted, :default => false
       t.string :street_address
       t.string :approximate_age
       t.text :description

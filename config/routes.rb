@@ -62,19 +62,23 @@ Rails.application.routes.draw do
 
   get 'Hamza_Story', to: 'pages#hamza_story'
 
-  resources :report_cases, :except => [:new, :edit, :update, :destroy]
+  resources :report_cases, :except => [:new, :edit, :update, :destroy, :show]
 
   get 'report-new-case', to: 'report_cases#new'
 
   post 'report-new-case', to: 'report_cases#create'
 
-  get 'view-reported-cases', to: 'report_case#volunteer_reported_cases', as: "view_reported_cases"
+  get 'view-reported-cases', to: 'report_cases#volunteer_reported_cases', as: "view_reported_cases"
 
-  get 'view-pending-cases', to: 'report_case#view_pending_cases', as: "view_pending_cases"
+  get 'view-pending-cases', to: 'report_cases#view_pending_cases', as: "view_pending_cases"
 
-  get 'accepted_cases', to: 'report_case#orphanage_accepted_cases', as: "accepted_cases"
+  get 'resolved_cases', to: 'report_cases#orphanage_resolved_cases', as: "resolved_cases"
 
-  get 'accept_case/:case_id', to: 'report_case#accept_case'
+  get 'resolve_case/:case_id', to: 'report_cases#mark_as_resolved', as: "resolve_case"
+
+  get 'accepted_cases', to: 'report_cases#orphanage_accepted_cases', as: "accepted_cases"
+
+  get 'accept_case/:case_id', to: 'report_cases#accept_case', as: 'accept_case'
 
   resources :appointments, :except => [:new, :create, :destroy, :edit, :update]
   
