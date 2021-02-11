@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  case_resolved: false
+  street_address: MyString
+  approximate_age: MyString
+  description: MyText
+  health_state: MyText
+  volunteer_id: 1
+  governorate: MyString
+  orphanage_id: 1
+
+two:
+  name: MyString
+  case_resolved: false
+  street_address: MyString
+  approximate_age: MyString
+  description: MyText
+  health_state: MyText
+  volunteer_id: 1
+  governorate: MyString
+  orphanage_id: 1
