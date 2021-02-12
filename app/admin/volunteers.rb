@@ -5,7 +5,7 @@ ActiveAdmin.register Volunteer do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :first_name, :last_name, :street_address, :phone_number, :email, :birth_date, :job, :password_digest, :governorate
+  permit_params :first_name, :last_name, :street_address, :phone_number, :email, :birth_date, :job, :password, :governorate
   #
   # or
   #
@@ -14,5 +14,20 @@ ActiveAdmin.register Volunteer do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  form do |f|
+    f.inputs "Admin Details" do
+    f.input :first_name
+    f.input :last_name
+    f.input :password
+    f.input :phone_number
+    f.input :street_address
+    f.input :email
+    f.input :job
+    f.input :birth_date
+    f.input :governorate
+    end
+    f.actions
+  end
   
 end

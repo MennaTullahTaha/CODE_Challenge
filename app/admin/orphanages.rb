@@ -17,7 +17,8 @@ ActiveAdmin.register Orphanage do
 
   form do |f|
     f.inputs "Admin Details" do
-    f.input :email
+    f.input :name
+    f.input :street_address
     f.input :password
     f.input :phone_number
     f.input :email
