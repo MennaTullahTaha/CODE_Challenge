@@ -1,5 +1,6 @@
 class OrphanageVolunteersController < ApplicationController
- 
+    before_action :is_verified?, only: [:current_volunteers]
+   
     def volunteer_activities
         if logged_in? && current_user.class.name == "Volunteer"
             @orphanages = current_user.orphanages.paginate(page: params[:page], per_page: 5)
@@ -16,7 +17,6 @@ class OrphanageVolunteersController < ApplicationController
             flash[:alert] = "You need to be logged in with orphanage account to view this page."
             redirect_to root_path
         end
-
     end 
 
 end

@@ -3,6 +3,7 @@ class ReportCasesController < ApplicationController
     before_action :logged_in?
     before_action :require_volunteer, only: [:new, :create, :volunteer_reported_cases]
     before_action :require_orphanage, only: [:view_pending_cases, :accept_case, :mark_as_resolved]
+    before_action :is_verified?, only: [:view_pending_cases, :accept_case, :mark_as_resolved, :orphanage_accepted_cases, :orphanage_resolved_cases]
     before_action :set_case, only: [:accept_case, :mark_as_resolved]
     
     def new 
@@ -74,6 +75,4 @@ class ReportCasesController < ApplicationController
     def set_case
         @case = ReportCase.find(params[:case_id]) 
     end
-
-
 end

@@ -2,6 +2,7 @@ class AppointmentsController < ApplicationController
     before_action :require_volunteer, only: [:new, :create]
     before_action :retrieve_orphanages, only: [:new, :create]
     before_action :require_orphanage, only: [:pending_appointments, :approve_appointment, :cancel_appointment]
+    before_action :is_verified?, only: [:pending_appointments, :approve_appointment, :cancel_appointment, :approved_appointments]
     before_action :require_same_orphanage, only: [:approve_appointment, :cancel_appointment]
     before_action :set_appointment, only: [:approve_appointment, :cancel_appointment]
 
@@ -93,7 +94,7 @@ class AppointmentsController < ApplicationController
     end
 
     def retrieve_orphanages 
-        @orphanages = Orphanage.all
+        @orphanages = Orphanage.where(verified: true)
     end
 
     def set_appointment

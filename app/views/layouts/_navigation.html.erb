@@ -18,7 +18,7 @@
             Posts
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-               <%if logged_in? && current_user.class.name == "Orphanage"%>
+               <%if logged_in? && current_user.class.name == "Orphanage" && current_user.verified%>
                <%=link_to "Create new post", new_post_path, class: "dropdown-item"%>
                <%end%>
                <%=link_to "View posts", posts_path, class: "dropdown-item"%>
@@ -41,7 +41,7 @@
          </li>
          <%if logged_in?%>
          <li class="nav-item dropdown">
-            <%if current_user.class.name == "Orphanage"%>
+            <%if current_user.class.name == "Orphanage" && current_user.verified%>
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Profile [<%=current_user.name%>]
             </a>
