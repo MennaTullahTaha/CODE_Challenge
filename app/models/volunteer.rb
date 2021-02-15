@@ -29,6 +29,10 @@ class Volunteer < ApplicationRecord
     
     validates :password, :presence =>true, :confirmation =>true
 
+    validates :personal_id, :presence => true, length: {minimum: 14, maximum:14}, uniqueness: {case_sensitive: false}
+    
+    validate :personal_ID_validation
+
     validates_confirmation_of :password
 
     validate :governorate_was_selected
@@ -49,16 +53,26 @@ class Volunteer < ApplicationRecord
 
     def governorate_was_selected
         if GOVERNORATES.nil?
-            errors.add(:governorate, "governorate can't be empty")
+            errors.add(:governorate, "can't be empty")
             return 
         end
         if GOVERNORATES.include? governorate == false
-            errors.add(:governorate, "governorate must be selected from given options")
+            errors.add(:governorate, "must be selected from given options")
         end
     end 
 
     def ensure_email_is_downcase
         email.downcase! if email
+    end
+
+    def personal_ID_validation
+        if personal_id[0]!= '2'
+            errors.add(:personal_ID, "must start with 2")
+        elsif !personal_id.scan(/\D/)
+            errors.add(:personal_ID, "must contain only numbers")
+        elsif ("19"+ personal_id[1]+personal_id[2] +"-"+personal_id[3]+personal_id[4]+"-"+personal_id[5]+personal_id[6]).to_date != birth_date
+            errors.add(:personal_ID, "is invalid")
+        end 
     end
 
 end

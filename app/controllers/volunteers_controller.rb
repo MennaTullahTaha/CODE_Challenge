@@ -45,7 +45,7 @@ class VolunteersController < ApplicationController
     end
 
     def update
-        if @volunteer.update(volunteer_params)
+        if @volunteer.update(volunteer_params.except(:personal_id))
             flash[:notice] = "Volunteer was updated successfully."
             redirect_to @volunteer
         else
@@ -64,7 +64,7 @@ class VolunteersController < ApplicationController
 
     def volunteer_params
         params.require(:volunteer).permit(:first_name, :last_name, :email, :password, :password_confirmation, :phone_number, :job,
-                                          :street_address, :governorate, :birth_date)
+                                          :street_address, :governorate, :birth_date, :personal_id)
     end 
 
     def set_volunteer

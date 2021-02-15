@@ -58,6 +58,8 @@ Rails.application.routes.draw do
 
   get 'Sara_Story', to: 'pages#sara_story'
 
+  get 'volunteer-options', to: 'pages#volunteer_options', as: "volunteer_options"
+
   get 'Fatima_Story', to: 'pages#fatima_story'
 
   get 'Marwa_Story', to: 'pages#marwa_story'

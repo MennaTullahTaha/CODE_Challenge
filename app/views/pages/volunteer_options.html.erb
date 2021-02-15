@@ -1,0 +1,54 @@
+<h1 class="text-center mt-4">Volunteering options</h1>
+<div class="container">
+   <div class="row justify-content-md-center">
+      <div class="col-4 mt-4">
+         <div class="card text-center shadow mb-5 bg-white rounded">
+            <div class="card-body">
+               <%= image_tag("orph.jpeg")%><br/><br/>
+               <%= link_to "View Orphanage Posts", posts_path, class: "btn btn-outline-info" %>
+            </div>
+         </div>
+      </div>
+      <div class="col-4 mt-4">
+         <div class="card text-center shadow mb-5 bg-white rounded">
+            <div class="card-body">
+               <%= image_tag("appointment.jpeg")%><br/><br/>
+               <%= link_to "Schedule time to visit Orphanage", "/schedule-time", class: "btn btn-outline-info" %>
+            </div>
+         </div>
+      </div>
+      <div class="col-4 mt-4">
+         <div class="card text-center shadow mb-5 bg-white rounded">
+            <div class="card-body">
+               <%= image_tag("st5_cut.jpg")%><br/><br/>
+               <%= link_to "Get to know more about Kafala", "/what_is_Kafala", class: "btn btn-outline-info" %>
+            </div>
+         </div>
+      </div>
+      <div class="col-4 mt-4">
+         <div class="card text-center shadow mb-5 bg-white rounded">
+            <div class="card-body">
+               <%= image_tag("eligibility.jpeg")%><br/><br/>
+               <%= link_to "Check eligibility criteria for Kafala", "/eligibility_criteria", class: "btn btn-outline-info" %>
+            </div>
+         </div>
+      </div>
+      <div class="col-4 mt-4">
+         <div class="card text-center shadow mb-5 bg-white rounded">
+            <div class="card-body">
+               <%= image_tag("documents.jpeg")%><br/><br/>
+               <%= link_to "View required documents for Kafala", "/procedures_documents_required", class: "btn btn-outline-info" %>
+            </div>
+         </div>
+      </div>
+      <div class="col-4 mt-4">
+         <div class="card text-center shadow mb-5 bg-white rounded">
+            <div class="card-body">
+               <%= image_tag("donate.jpeg")%><br/><br/>
+               <%= link_to "Coming soon: Donate Money to orphanages","", class: "btn btn-secondary btn-lg disabled" %>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+

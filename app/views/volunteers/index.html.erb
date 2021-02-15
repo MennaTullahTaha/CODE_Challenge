@@ -15,8 +15,8 @@
                <br/>
                <div class="card-text text-center">Birth Date: <%=volunteer.birth_date%></div>
                <br/>
-               <!-- <div class="card-text text-center">Number of posts: <%= pluralize(orphanage.posts.count, "post")%></div>
-               <br/> -->
+               <div class="card-text text-center">Personal ID: <%=volunteer.personal_id%></div>
+               <br/>
                <div class="card-text text-center">Governorate: <%= volunteer.governorate%></div>
                <br/>
                <%if logged_in? && volunteer == current_user%>

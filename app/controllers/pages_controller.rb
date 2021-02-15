@@ -1,6 +1,10 @@
 class PagesController < ApplicationController
     def home
-        redirect_to posts_path if logged_in?
+        if logged_in? && current_user.class.name == "Orphanage"
+            redirect_to posts_path
+        elsif logged_in? && current_user.class.name == "Volunteer"
+            redirect_to volunteer_options_path
+        end 
     end
 
     def FAQS
@@ -34,5 +38,12 @@ class PagesController < ApplicationController
     end
 
     def hamza_story
+    end 
+
+    def volunteer_options
+        if !logged_in? || current_user.class.name!= "Volunteer"
+            flash[:alert] = "You aren't allowed to view this page"
+            redirect_to posts_path
+        end
     end 
 end

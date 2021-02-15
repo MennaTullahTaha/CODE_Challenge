@@ -7,6 +7,7 @@
       <%if logged_in? == false%>
          <%= link_to "Register as an orphanage!", orphanages_signup_path, class: "btn btn-success btn-lg" %>
          <%= link_to "Sign up as a volunteer!", volunteers_signup_path, class: "btn btn-success btn-lg" %>
+         <%= link_to "DONATE","", class: "btn btn-secondary btn-lg disabled" %>
       <%end%>
    </div>
 </div>
