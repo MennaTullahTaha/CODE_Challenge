@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     end 
 
     def is_verified?
-		if !current_user.verified
+		if current_user.class.name == "Orphanage" && !current_user.verified
 			flash[:alert] = "You aren't permitted to perfom this action until your account is verified."
 			redirect_to orphanages_path
 		end
