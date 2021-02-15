@@ -25,7 +25,7 @@
             <div class="form-group row">
             <%= f.label :personal_ID, class: "col-2 col-form-label text-light" %>
             <div class="col-10"> 
-               <%= f.email_field :personal_id, class: "form-control shadow rounded", placeholder: "Enter your personal ID" %>
+               <%= f.text_field :personal_id, class: "form-control shadow rounded", placeholder: "Enter your personal ID" %>
             </div>
          </div>
          <%end%>
@@ -44,7 +44,7 @@
           <div class="form-group row">
             <%= f.label :phone_number, class: "col-2 col-form-label text-light" %>
             <div class="col-10">
-               <%= f.telephone_field :phone_number, class: "form-control shadow rounded", placeholder: "Phone number of orphanage" %>
+               <%= f.telephone_field :phone_number, class: "form-control shadow rounded", placeholder: "Enter your phone number" %>
             </div>
          </div>
          <div class="form-group row">
@@ -56,7 +56,7 @@
          <div class="form-group row">
             <%= f.label :street_address, class: "col-2 col-form-label text-light" %>
             <div class="col-10">
-               <%= f.text_field :street_address, class: "form-control shadow rounded", placeholder: "street address of orphanage" %>
+               <%= f.text_field :street_address, class: "form-control shadow rounded", placeholder: "Enter your street address" %>
             </div>
          </div>
          <div class="form-group row">
