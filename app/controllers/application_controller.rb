@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
         if session[:orphanage_id]
              @current_user ||= Orphanage.find(session[:orphanage_id])    
         elsif session[:volunteer_id]
-            @current_user ||= Volunteer.find(session[:volunteer_id]) 
         end  
      end 
 
