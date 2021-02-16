@@ -12,17 +12,23 @@ class AppointmentsController < ApplicationController
     end 
 
     def create
-        @appointment = Appointment.new(appointment_params.except(:orphanage))
-        @orphanage = Orphanage.find(params[:appointment][:orphanage])
-        @appointment.orphanage = @orphanage
-        @appointment.volunteer = current_user
-        if @appointment.save
-            flash[:notice] = "Your appointment is pending approval"
-            redirect_to orphanages_path
-        else
-            render 'new'
+        appointment = Appointment.find_by(volunteer_id: current_user.id, available_from: params[:appointment][:available_from],
+                                        available_until: params[:appointment][:available_until])
+        if appointment 
+            flash[:alert] = "An appointment with same time as been booked by you on the same day."
+            redirect_to schedule_time_path
+        else 
+            @appointment = Appointment.new(appointment_params.except(:orphanage))
+            @orphanage = Orphanage.find(params[:appointment][:orphanage])
+            @appointment.orphanage = @orphanage
+            @appointment.volunteer = current_user
+            if @appointment.save
+                flash[:notice] = "Your appointment is pending approval"
+                redirect_to orphanages_path
+            else
+                render 'new'
+            end 
         end 
-        
     end 
 
     def pending_appointments
