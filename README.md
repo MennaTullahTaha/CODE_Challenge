@@ -4,6 +4,8 @@ Steps necessary to get the application up and running:
 
  * preferred system: ubuntu 
  
+ * Postgres used for database 
+ 
  * ruby '2.7.1'
  
  * rails, '~> 6.0.3', '>= 6.0.3.4'
@@ -19,4 +21,4 @@ Steps necessary to get the application up and running:
     rails db:seed 
     
     rails s
-    
+ 
