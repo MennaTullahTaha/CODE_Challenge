@@ -1,9 +1,10 @@
 class AppointmentsController < ApplicationController
     before_action :require_volunteer, only: [:new, :create]
     before_action :retrieve_orphanages, only: [:new, :create]
-    before_action :require_orphanage, only: [:pending_appointments, :approve_appointment, :cancel_appointment]
+    before_action :require_orphanage, only: [:pending_appointments, :approve_appointment]
     before_action :is_verified?, only: [:pending_appointments, :approve_appointment, :cancel_appointment, :approved_appointments]
-    before_action :require_same_orphanage, only: [:approve_appointment, :cancel_appointment]
+    before_action :require_same_orphanage_for_approval, only: [:approve_appointment]
+    before_action :require_same_orphanage, only: [:cancel_appointment]
     before_action :set_appointment, only: [:approve_appointment, :cancel_appointment]
 
     def new
@@ -64,10 +65,18 @@ class AppointmentsController < ApplicationController
                 end 
             end
             @appointment.destroy
-            redirect_to view_pending_appointments_path
+            if current_user.class.name == "Orphanage"
+                redirect_to view_pending_appointments_path
+            else 
+                redirect_to view_approved_appointments_path
+            end 
         else 
             flash[:alert] = "Appointment not found"
-            redirect_to view_pending_appointments_path
+            if current_user.class.name == "Orphanage"
+                redirect_to view_pending_appointments_path
+            else 
+                redirect_to view_approved_appointments_path
+            end 
         end
     end
 
@@ -81,17 +90,22 @@ class AppointmentsController < ApplicationController
         params.require(:appointment).permit(:choosen_day, :available_from, :available_until, :note, :orphanage)
     end 
 
+    def require_same_orphanage_for_approval
+        require_same_orphanage
+        if current_user.class.name == "Volunteer"
+            flash[:alert] = "You aren't permitted to perfom this action."
+            redirect_to @appointment
+        end 
+    end
+
     def require_same_orphanage
         if current_user.class.name == "Orphanage"
             if @appointment && current_user != @appointment.orphanage
                 flash[:alert] = "This account is permitted to only edit or delete posts created by it."
                 redirect_to @appointment
             end 
-        else 
-            flash[:alert] = "You aren't permitted to perfom this action."
-            redirect_to @appointment
-        end 
-    end
+        end
+    end 
 
     def retrieve_orphanages 
         @orphanages = Orphanage.where(verified: true)
