@@ -68,14 +68,14 @@ class Volunteer < ApplicationRecord
     def personal_ID_validation
         begin
             if personal_id[0]!= '2'
-                errors.add(:personal_id, "must start with 2")
+                errors.add(:personal_id, "id must start with 2")
             elsif !personal_id.scan(/\D/)
-                errors.add(:personal_id, "must contain only numbers")
+                errors.add(:personal_id, "id must contain only numbers")
             elsif ("19"+ personal_id[1]+personal_id[2] +"-"+personal_id[3]+personal_id[4]+"-"+personal_id[5]+personal_id[6]).to_date != birth_date
-                errors.add(:personal_id, "is invalid")
+                errors.add(:personal_id, "id is invalid")
             end 
         rescue ArgumentError => e
-            errors.add(:personal_id, "doesn't exist")
+            errors.add(:personal_id, "id doesn't exist")
             return
         end
     end

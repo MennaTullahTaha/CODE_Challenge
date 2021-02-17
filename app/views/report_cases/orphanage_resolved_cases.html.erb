@@ -1,2 +1,8 @@
 <h1 class="text-center mt-4">Cases Resolved by your account</h1>
+<div class="flickr_pagination">
+   <%= will_paginate @cases, :container => false %>
+</div>
 <%= render 'case'%>
+<div class="flickr_pagination">
+   <%= will_paginate @cases, :container => false %>
+</div>

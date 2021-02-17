@@ -10,9 +10,14 @@
                <div class="card-text text-left">Case State: <%= p reported_case.case_resolved ? "Resolved." : "Open." %></div>
                <br/>
                <%if reported_case.case_accepted%>
-               <%o = Orphanage.find(reported_case.orphanage_id)%>
-               <div class="card-text text-left">Case accepted by: <%=link_to o.name, orphanage_path(o) %></div>
-               <br/>
+                  <%if Orphanage.find_by(id: reported_case.orphanage_id)%>
+                     <%o = Orphanage.find_by(id: reported_case.orphanage_id)%>
+                     <div class="card-text text-left">Case accepted by: <%=link_to o.name, orphanage_path(o) %></div>
+                     <br/>
+                  <%else%>
+                     <div class="card-text text-left">Case accepted by: (Orphanage no longer exists on the system)</div>
+                     <br/>
+                  <%end%>
                <%end%>
                <div class="card-text text-left">Child name: <%= reported_case.name == "" ? "Non provided" : reported_case.name %></div>
                <br/>
@@ -31,7 +36,7 @@
                <%end%>
                <%if reported_case.case_accepted == false && current_user.class.name == "Orphanage"%>
                <%= link_to "Accept Case", accept_case_path(reported_case.id), class: "btn btn-outline-info" %>
-               <%elsif reported_case.case_accepted && !reported_case.case_resolved && current_user == Orphanage.find(reported_case.orphanage_id) %>
+               <%elsif reported_case.case_accepted && !reported_case.case_resolved && current_user == Orphanage.find_by(id: reported_case.orphanage_id) %>
                <%= link_to "Resolve Case", resolve_case_path(reported_case.id), class: "btn btn-outline-info" %>
                <%end%>
             </div>
